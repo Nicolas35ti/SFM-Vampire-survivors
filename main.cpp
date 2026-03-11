@@ -3,6 +3,7 @@
 
 #include "Player.h"
 #include "FrameRate.h"
+#include "Enemy.h"
 
 int main() {
     // ------------------ INITIALIZE
@@ -14,12 +15,15 @@ int main() {
     //-------------------
     FrameRate frameRate;
     Player player;
+    Enemy enemy;
 
     frameRate.Initialize();
     player.Initialize();
+    enemy.Initialize();
 
     frameRate.Load();
     player.Load();
+    enemy.Load();
 
     //---------------- LOAD
 
@@ -40,12 +44,14 @@ int main() {
         sf::Vector2f mousePosition = sf::Vector2f(sf::Mouse::getPosition(window));
 
         frameRate.Update(deltaTime);
-        player.Update(deltaTime, mousePosition);
+        player.Update(deltaTime, enemy, mousePosition);
+        enemy.Update(deltaTime);
         // -----------------------
         window.clear(sf::Color::Black);
 
         frameRate.Draw(window);
         player.Draw(window);
+        enemy.Draw(window);
 
         window.display();
     }

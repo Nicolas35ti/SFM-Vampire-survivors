@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Bullet.h"
+#include "Enemy.h"
 
 class Player {
     private:
@@ -23,6 +24,6 @@ class Player {
 
     void Initialize();
     void Load();
-    void Update(float deltaTime, sf::Vector2f& mousePosition);
+    void Update(float deltaTime,Enemy& enemy, sf::Vector2f& mousePosition);
     void Draw(sf::RenderWindow& window);
 };

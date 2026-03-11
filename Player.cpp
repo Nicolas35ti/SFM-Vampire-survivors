@@ -20,7 +20,7 @@ void Player::Load()
     characterShape.setFillColor(sf::Color::Blue);
 }
 
-void Player::Update(float deltaTime, sf::Vector2f& mousePosition)
+void Player::Update(float deltaTime, Enemy& enemy, sf::Vector2f& mousePosition)
 {
     sf::Vector2f position = characterShape.getPosition();
 
@@ -44,6 +44,13 @@ void Player::Update(float deltaTime, sf::Vector2f& mousePosition)
 
     for (size_t i = 0; i < bullets.size(); i++) {
         bullets[i].Update(deltaTime);
+
+        if (enemy.health >= 0) {
+            if (Math::DidRectCollide(bullets[i].GetGlobalBounds(), enemy.enemyShape.getGlobalBounds())) {
+                enemy.changeHealth(-10);
+                bullets.erase(bullets.begin() + i);
+            }
+        }
     }
 }
 
