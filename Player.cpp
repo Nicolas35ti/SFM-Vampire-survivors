@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Math.h"
+#include "Enemy.h"
 
 Player::Player() : playerSpeed(1.0f), maxFireRate(150), fireRateTimer(0)
 {

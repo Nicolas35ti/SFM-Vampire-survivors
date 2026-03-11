@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Bullet.h"
-#include "Enemy.h"
+
+class Enemy;
 
 class Player {
     private:

@@ -45,7 +45,7 @@ int main() {
 
         frameRate.Update(deltaTime);
         player.Update(deltaTime, enemy, mousePosition);
-        enemy.Update(deltaTime);
+        enemy.Update(deltaTime, player);
         // -----------------------
         window.clear(sf::Color::Black);
 

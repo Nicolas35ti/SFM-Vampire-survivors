@@ -1,4 +1,6 @@
 #include "Enemy.h"
+#include "Player.h"
+#include "Math.h"
 #include <iostream>
 
 Enemy::Enemy() : health(100)
@@ -12,6 +14,17 @@ Enemy::~Enemy()
 void Enemy::changeHealth(int hp)
 {
     health += hp;
+}
+
+//movimrnto do inimigo, faz ele perseguir o player
+void Enemy::Move(float deltaTime, Player& player) {
+    sf::Vector2f playerPosition = player.characterShape.getPosition();
+    sf::Vector2f thisPosition = enemyShape.getPosition();
+    sf::Vector2f direction = Math::NormalizeVector(playerPosition - thisPosition);
+
+    speed = 0.5f;
+
+    enemyShape.move (direction * speed * deltaTime);
 }
 
 void Enemy::Initialize()
@@ -34,10 +47,11 @@ void Enemy::Load()
     boundingRectangle.setSize(sf::Vector2f(size.x * enemyShape.getScale().x, size.y * enemyShape.getScale().y));
 }
 
-void Enemy::Update(float deltaTime)
+void Enemy::Update(float deltaTime, Player& player)
 {
     if (health > 0) {
         boundingRectangle.setPosition(enemyShape.getPosition());
+        Move(deltaTime, player);
     }
 }
 
