@@ -15,7 +15,12 @@ class Enemy {
     
     sf::RectangleShape enemyShape;
     
+    sf::RectangleShape lifeBarRect1;
+    sf::RectangleShape lifeBarrect2;
+    
     int health;
+    int maxHealth;
+    float maxLBWidth;
 
     public:
     Enemy();
